@@ -311,12 +311,12 @@ function LoginPage({onIn,toggle,mode}){
         <div style={{padding:"1.5rem 1.375rem"}}>
           {tab==="emp"?<>
             <Lbl>Email address</Lbl>
-            <Inp value={email} set={v=>{setEmail(v);setError("");}} ph="firstname.lastname@nice.com" type="email" disabled={ld} onEnter={goEmp}/>
+            <Inp value={email} set={v=>{setEmail(v);setError("");}} ph="firstname.lastname@niceactimize.com" type="email" disabled={ld} onEnter={goEmp}/>
             <p style={{fontSize:"0.625rem",color:t.dim,marginTop:"0.375rem"}}>No password required</p>
           </>:<>
-            <Lbl>Username</Lbl><Inp value={au} set={v=>{setAu(v);setError("");}} ph="Admin username" disabled={ld} onEnter={goAdm}/>
+            <Lbl>Username</Lbl><Inp value={au} set={v=>{setAu(v);setError("");}} ph="adminvivek" disabled={ld} onEnter={goAdm}/>
             <div style={{height:"0.75rem"}}/>
-            <Lbl>Password</Lbl><Inp value={ap} set={v=>{setAp(v);setError("");}} ph="Admin password" type="password" disabled={ld} onEnter={goAdm}/>
+            <Lbl>Password</Lbl><Inp value={ap} set={v=>{setAp(v);setError("");}} ph="password" type="password" disabled={ld} onEnter={goAdm}/>
           </>}
           {error&&<div style={{marginTop:"0.625rem",padding:"0.5rem 0.75rem",borderRadius:"0.5rem",background:t.errS,border:`1px solid ${t.errB}`,color:t.err,fontSize:"0.75rem",fontWeight:600}}>{error}</div>}
           <button onClick={tab==="emp"?goEmp:goAdm} disabled={ld} style={{marginTop:"1rem",width:"100%",padding:"0.75rem",background:ld?t.dim:`linear-gradient(135deg,${t.ac},${t.acT})`,color:"#fff",border:"none",borderRadius:"0.625rem",fontSize:"0.875rem",fontWeight:700,cursor:ld?"wait":"pointer"}}>{ld?"Signing in…":tab==="adm"?"Sign in as admin":"Continue"}</button>
@@ -680,11 +680,11 @@ function AdminPage({emps,roster,extended,managers,subs,period,setPeriod,open,set
         <div style={{position:"relative"}}>
           <Btn primary onClick={()=>setExpOpen(!expOpen)}>Export reports ▾</Btn>
           {expOpen&&<div style={{position:"absolute",top:"110%",left:0,zIndex:100,background:t.card,border:`1px solid ${t.bdHi}`,borderRadius:"0.625rem",padding:"0.375rem 0",minWidth:"17.5rem",boxShadow:"0 0.375rem 1.5rem rgba(0,0,0,.3)"}} onMouseLeave={()=>setExpOpen(false)}>
-            <DDBtn onClick={()=>{dl(buildCSV(emps),`shift_type_roster_${MS[month]}${year}_whole_SVX_Pune_Team.csv`);setExpOpen(false);}}>Full team (all)</DDBtn>
-            <DDBtn onClick={()=>{dl(buildCSV(roster),`${pre} - FullTime.csv`);setExpOpen(false);}}>Full-time only</DDBtn>
+            <DDBtn onClick={()=>{dl(buildCSV(emps),`shift_type_roster_${MS[month]}${year}_whole_SVX_Pune_Team.xlsx`);setExpOpen(false);}}>Full team (all)</DDBtn>
+            <DDBtn onClick={()=>{dl(buildCSV(roster),`${pre} - FullTime.xlsx`);setExpOpen(false);}}>Full-time only</DDBtn>
             <div style={{height:"1px",background:t.bd,margin:"0.25rem 0"}}/>
             <div style={{padding:"0.25rem 0.875rem",fontSize:"0.5625rem",color:t.dim,fontWeight:700,textTransform:"uppercase",letterSpacing:"0.08em"}}>By manager (full-time)</div>
-            {managers.map(m=><DDBtn key={m} onClick={()=>{dl(buildCSV(emps.filter(e=>e.reportingManager===m&&e.fullTime)),`${pre} - ${m}.csv`);setExpOpen(false);}}>{m}</DDBtn>)}
+            {managers.map(m=><DDBtn key={m} onClick={()=>{dl(buildCSV(emps.filter(e=>e.reportingManager===m&&e.fullTime)),`${pre} - ${m}.xlsx`);setExpOpen(false);}}>{m}</DDBtn>)}
             {!managers.length&&<div style={{padding:"0.375rem 0.875rem",fontSize:"0.6875rem",color:t.dim,fontStyle:"italic"}}>No managers</div>}
           </div>}
         </div>
