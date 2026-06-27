@@ -7,8 +7,7 @@ import React, {
   useContext,
 } from "react";
 
-const API_URL =
-  "https://script.google.com/macros/s/AKfycbxHMhp8A_38DcjTZuc6YNGW0vXFLrDwVdkheVXTR8teBgFSwkPpKIUzrArmcmQOeGoz/exec";
+const API_URL = import.meta.env.VITE_API_URL;
 
 async function api(action, params = {}, body = null) {
   const u = new URL(API_URL);
